@@ -8,3 +8,4 @@
       + 기본 객체처리 : MappingJackson2HttpMessageConverter(JsonConverter)
 +  ## 컴포넌트 스캔과 자동 의존관계 설정
 + ## JPA
+  + ### 영속성 컨텍스트
