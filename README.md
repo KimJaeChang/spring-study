@@ -9,3 +9,8 @@
 +  ## 컴포넌트 스캔과 자동 의존관계 설정
 + ## JPA
   + ### 영속성 컨텍스트
+    + 뜻 : "Entity를 영구 저장하는 환경" 
+    + 예) : EntityManager.persist(entity);
+      + -> DB에 바로 저장하는게 아닌 EntityManager를 통해서 영속성 컨텍스트에 저장해놓는다.
+    + EntityManagerFactory : 
+    + EntityManager : EntityManagerFactory를 통해서 요청이 올 때마다 생성
