@@ -29,3 +29,8 @@
     4. ResultSet 세팅 - ResultSet rs = pstmt.getGeneratedKeys()
 + ## 주의
   + 꼭 connection을 close 해야한다.
++ ## Spring Data JPA
+  + 인터페이스를 통한 기본적인 CRUD
+  + 페이징 기능 자동 제공
++ ## Spring AOP
+  + ProceedingJoinPoint = joinPoint.proceed()로 비즈니스 로직 실행시간 측정 가능
