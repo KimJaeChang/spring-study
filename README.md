@@ -36,7 +36,7 @@
   + ProceedingJoinPoint = joinPoint.proceed()로 비즈니스 로직 실행시간 측정 가능
 
 
-+ # 스프링 기본
+# 스프링 기본
 + ## Spring FrameWork
   + 핵심 기술 : 스프링 DI 컨테이너, AOP, 이벤트, 기타
   + 웹 기술 : 스프링 MVC, 스프링 WebFlux
