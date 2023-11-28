@@ -1,4 +1,4 @@
-package kr.co.kjc.spring.first.member;
+package kr.co.kjc.spring.non_dip.member;
 
 import lombok.Data;
 

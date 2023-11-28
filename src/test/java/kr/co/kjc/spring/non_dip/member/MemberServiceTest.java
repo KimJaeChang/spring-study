@@ -1,9 +1,5 @@
-package kr.co.kjc.spring.first.member;
+package kr.co.kjc.spring.non_dip.member;
 
-import kr.co.kjc.spring.first.member.Grade;
-import kr.co.kjc.spring.first.member.Member;
-import kr.co.kjc.spring.first.member.MemberService;
-import kr.co.kjc.spring.first.member.MemberServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

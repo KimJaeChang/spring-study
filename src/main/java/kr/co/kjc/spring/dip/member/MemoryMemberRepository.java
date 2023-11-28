@@ -1,4 +1,4 @@
-package kr.co.kjc.spring.first.member;
+package kr.co.kjc.spring.dip.member;
 
 import java.util.HashMap;
 import java.util.Map;

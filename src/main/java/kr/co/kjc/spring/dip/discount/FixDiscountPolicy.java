@@ -1,7 +1,7 @@
-package kr.co.kjc.spring.first.discount;
+package kr.co.kjc.spring.dip.discount;
 
-import kr.co.kjc.spring.first.member.Grade;
-import kr.co.kjc.spring.first.member.Member;
+import kr.co.kjc.spring.dip.member.Grade;
+import kr.co.kjc.spring.dip.member.Member;
 
 public class FixDiscountPolicy implements DiscountPolicy {
 

@@ -1,10 +1,10 @@
-package kr.co.kjc.spring.first.order;
+package kr.co.kjc.spring.non_dip.order;
 
-import kr.co.kjc.spring.first.discount.DiscountPolicy;
-import kr.co.kjc.spring.first.discount.FixDiscountPolicy;
-import kr.co.kjc.spring.first.member.Member;
-import kr.co.kjc.spring.first.member.MemberRepository;
-import kr.co.kjc.spring.first.member.MemoryMemberRepository;
+import kr.co.kjc.spring.non_dip.discount.DiscountPolicy;
+import kr.co.kjc.spring.non_dip.discount.FixDiscountPolicy;
+import kr.co.kjc.spring.non_dip.member.Member;
+import kr.co.kjc.spring.non_dip.member.MemberRepository;
+import kr.co.kjc.spring.non_dip.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
 

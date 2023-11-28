@@ -1,4 +1,4 @@
-package kr.co.kjc.spring.first.order;
+package kr.co.kjc.spring.dip.order;
 
 import lombok.Data;
 
@@ -20,4 +20,5 @@ public class Order {
     public int calculatePrice() {
         return itemPrice - discountPrice;
     }
+
 }

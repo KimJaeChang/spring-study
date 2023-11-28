@@ -1,4 +1,4 @@
-package kr.co.kjc.spring.first.member;
+package kr.co.kjc.spring.dip.member;
 
 public interface MemberService {
 
