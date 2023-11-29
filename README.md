@@ -68,7 +68,13 @@
 
 + ## 스프링 컨테이너
   + <U>**ApplicationContext**</U>를 스프링 컨테이너라 한다.
-  + @Configuration이 붙은 설정 정보 구성을 사용하며 @Bean이 붙은 메소드를 모두 호출해서 반환된 객체를 스프링 컨테이너에 등록한다 (싱글톤 방식)
+    + ex) ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+  + <U>**ApplicationContext**</U>는 인터페이스이다.
+  + XML 기반으로 만들 수 있고, 애노테이션 기반의 자바 설정 클래스로 반들 수 있다.
+  + <U>**@Configuration**</U>이 붙은 설정 정보 구성을 사용하며 <U>**@Bean**</U>이 붙은 메소드를 모두 호출해서 반환된 객체를 스프링 컨테이너에 등록한다 (싱글톤 방식)
+  + 스프링 컨테이너는 파라미터로 넘어온 설정 클래스 정보(default : 메소드 이름)를 사용해서 스프링 빈을 등록한다.
+  + 스프링 컨테이너는 설정 정보를 참고해서 의존관계를 주입(DI)한다.
+
   
 + # 객체지향 프로그래밍
   + 컴퓨터 프로그램을 명령어의 목록으로 보는 시각에서 벗어사 여러개의 독립된 단위, 
