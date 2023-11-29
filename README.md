@@ -1,4 +1,4 @@
-# Spring 입문
+# 스프링 입문
 + ## MVC와 템플릿 엔진
   + 웹 브라우저 -> 톰캣 서버 -> 스프링 컨테이너안에 있는 Controller가 받아서 viewResolver로 웹 브라우저로 return
 + ## API
@@ -68,14 +68,55 @@
 
 + ## 스프링 컨테이너
   + <U>**ApplicationContext**</U>를 스프링 컨테이너라 한다.
-    + ex) ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+    + ex) AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
   + <U>**ApplicationContext**</U>는 인터페이스이다.
   + XML 기반으로 만들 수 있고, 애노테이션 기반의 자바 설정 클래스로 반들 수 있다.
   + <U>**@Configuration**</U>이 붙은 설정 정보 구성을 사용하며 <U>**@Bean**</U>이 붙은 메소드를 모두 호출해서 반환된 객체를 스프링 컨테이너에 등록한다 (싱글톤 방식)
   + 스프링 컨테이너는 파라미터로 넘어온 설정 클래스 정보(default : 메소드 이름)를 사용해서 스프링 빈을 등록한다.
   + 스프링 컨테이너는 설정 정보를 참고해서 의존관계를 주입(DI)한다.
 
-  
++ ## 스프링 Bean
+  + BeanFactory와 ApplicationContext는 모두 스프링 컨테이너라고 한다.
+  + ![img_1.png](images/Spring-Bean.png)
+    + ### BeanFactory
+      + 스프링 컨테이너의 최상위 인터페이스다.
+      + 스프링 빈을 관리하고 조회하는 역활을 담당한다.
+      + getBeanDefinitionNames() 으로 모든 빈 조회 가능
+      + getBean(빈 name, class) 으로 특정 빈 조회 가능
+      + Role ROLE_APPLICATION : 직접 등록한 애플리케이션 빈
+      + Role ROLE_INFRASTRUCTURE : 스프링이 내부에서 사용하는 빈
+      + getBeansOfType() 으로 같은 class 타입으로 등록된 빈을 모두 조회 가능
+      + 부모 타입으로 getBean() 조회시, 자식이 둘 이상 있으면, 중복 오류가 발생한다.
+      + 부모 타입으로 getBean() 조회시, 자식이 둘 이상 있으면, 빈 이름을 지정하면 정상 작동한다.
+    + ### ApplicationContext
+      + BeanFactory 기능을 모두 상속받아서 제공한다. (인터페이스)
+      + 빈 관리기능 + 편리한 부가 기능을 제공한다.
+      + 애플리케이션을 개발할 때는 빈은 관리하고 조회하는 기능은 물론이고, 수 많은 부가기능이 필요하다.
+        + ### 메시지 소스를 활용한 국제화 기능
+          + ex) 한국에서 들어오면 한국어로, 영어권에서 들어오면 영어로 출력
+        + ### 환경변수
+          + local, dev, prod 등을 구분해서 처리
+        + ### 애플리케이션 이벤트
+          + 이벤트를 발행하고 구독하는 모델을 편리하게 지원
+        + ### 편리한 리소스 조회
+          + file, classpath, 외부 등에서 리소스를 편리하게 조회
+    + ### BeanDefinition (스프링 빈 설정 메타정보)
+      + <U>**BeanDefinition**</U>을 빈 설정 메타 정보라 한다.
+        + @Bean, <bean> 당 각각 하나씩 메타 정보가 생성된다.
+      + 스프링 컨테이너는 이 메타정보를 기반으로 스프링 빈을 생성한다.
+      + XML을 읽어서 BeanDefinition을 만들면 된다.
+      + 자바 코드를 읽어서 BeanDefinition을 만들면 된다.
+      + 스프링 컨테이너는 자바 코드인지, XML인지 몰라도 된다. 오직 BeanDefinition만 알면 된다.
+      + BeanClassName : 생성할 빈의 클래스 명(자바 설정 처럼 팩토리 역할의 빈을 사용하면 없음.)
+      + factoryBeanName : 팩토리 역할의 빈을 사용할 경우 이름, 예) appConfig
+      + factoryMethodName : 빈을 생성할 팩토리 메서트 지정, 예) memberService
+      + Scope : 싱글톤(기본값)
+      + lazyInit : 스프링 컨테이너를 생성할 때 빈을 생성하는 것이 아니라, 실제 빈을 사용할 때 까지 최대한 생성을 지연처리 하는지 여부
+      + InitMethodName : 빈을 생성하고, 의존관계를 적용한 뒤에 호출되는 초기화 메서드 명
+      + DestroyMethodName : 빈의 생명주기가 끝나서 제거하기 직전에 호출되는 메서드 명
+      + Constructor arguments, properties : 의존관계 주입에서 사용한다. (자바 설정 처럼 팩토리 역할의 빈을 사용하면 없음.)
+      + ![img.png](images/Spring-BeanDefinition.png)
+
 + # 객체지향 프로그래밍
   + 컴퓨터 프로그램을 명령어의 목록으로 보는 시각에서 벗어사 여러개의 독립된 단위, 
     즉 <U>**객체**</U>들의 모임으로 파악하고자 하는 것이다.
