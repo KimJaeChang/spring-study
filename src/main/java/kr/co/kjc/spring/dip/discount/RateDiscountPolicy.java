@@ -2,7 +2,9 @@ package kr.co.kjc.spring.dip.discount;
 
 import kr.co.kjc.spring.dip.member.Grade;
 import kr.co.kjc.spring.dip.member.Member;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RateDiscountPolicy implements DiscountPolicy {
 
     private int discountFixAMount = 1000; // 1000원 할이

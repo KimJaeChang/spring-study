@@ -72,7 +72,7 @@
   + <U>**ApplicationContext**</U>는 인터페이스이다.
   + XML 기반으로 만들 수 있고, 애노테이션 기반의 자바 설정 클래스로 반들 수 있다.
   + <U>**@Configuration**</U>이 붙은 설정 정보 구성을 사용하며 <U>**@Bean**</U>이 붙은 메소드를 모두 호출해서 반환된 객체를 스프링 컨테이너에 등록한다 (싱글톤 방식)
-  + 스프링 컨테이너는 파라미터로 넘어온 설정 클래스 정보(default : 메소드 이름)를 사용해서 스프링 빈을 등록한다.
+  + 스프링 컨테이너는 파라미터로 넘어온 설정 클래스 정보(default : 클래스 명의 맨 앞글자만 소문자로 사용)를 사용해서 스프링 빈을 등록한다.
   + 스프링 컨테이너는 설정 정보를 참고해서 의존관계를 주입(DI)한다.
   + 스프링 컨테이너의 기본 빈 등록방식은 <U>**싱글톤**</U>이지만 요청할 때 마다 새롱ㄴ 객체를 생성해서 반환하는 기능도 제공한다 (빈 스코프)
   + 스프링 컨테이너는 싱글톤 패턴을 적용하지 않아도, 객체 인스턴스를 싱글톤으로 관리한다.
@@ -122,6 +122,35 @@
       + DestroyMethodName : 빈의 생명주기가 끝나서 제거하기 직전에 호출되는 메서드 명
       + Constructor arguments, properties : 의존관계 주입에서 사용한다. (자바 설정 처럼 팩토리 역할의 빈을 사용하면 없음.)
       + ![img.png](images/Spring-BeanDefinition.png)
+  + 수동 빈 생성과 자동 빈 생성
+    + 수동 빈과 자동 빈이 겹칠 때는 수동 빈 생성 클래스가 우선 적용
+      ![img.png](images/Spring-Bean-custom-create.png)
+    + 스프링 부트에선 수동 빈 및 자동 빈 등록 오류시 start 할 때 에러가 뜬다.
+      ![img.png](images/Spring-Bean-custom-create-fail.png)
+      
++ # @Component
+  + 해당 애노테이션을 붙이면 스프링 컨테이너에 스프링 Bean으로 등록된다.
+  + ### FilterType 옵션
+    + ANNOTATION : 기본값, 애노테이션을 인식해서 동작한다.
+    + ASSIGNABLE_TYPE : 지정한 타입과 자식 타입을 인식해서 동작한다.
+      + ex) kr.co.spring.dip.discount.FixDiscountPolicy.class
+    + ASPECTJ : AspectJ 패턴 사용
+      + ex) kr.co.spring..*Service+
+    + REGEX : 정규 표현식
+      + ex) kr\.co\.spring\.dip.*
+    + CUSTOM : <U>**TypeFilter**</U> 라는 인터페이스를 구현해서 처리
++ # @ComponentScan
+  + 참고 : 컴포넌트 스캔을 사용하면 <U>**@Configuration**</U>이 붙은 설정 정보도 자동으로 등록되기 때문에, AppConfig, TestConfig 등
+    앞서 만들어두었던 설정 정보도 함께 등록되고, 실행되어 버린다.  
+    그래서 <U>**excludeFilters**</U>를 이용해서 설정 정보는 컴포넌트 스캔 대상에서 제외했다. 보통 설정 정보를 컴포넌트 스캔 대상에서 
+    제외하지는 않지만, 기존 예제 코드를 최대한 남기고 유지하기 위해서 이 방법을 선택했다.
+  + 컴포넌트 스캔은 이름 그대로 <U>**@Component**</U> 애노테이션이 붙은 클래스를 스캔해서 스프링 빈으로 등록한다.
+  + 컴포넌트 스캔 대상
+    + <U>**@Component**</U>
+    + <U>**@Controller**</U> : 스프링 MVC 컨트롤러로 인식
+    + <U>**@Service**</U> : 특별한 처리를 하지 않는다. 다만 개발자들이 비즈니스 계층을 인식하는데 도움이 됌
+    + <U>**@Repository**</U> : 스프링 데이터 접근 계층으로 인식하고, 데이터 계층의 예외를 스프링 예외로 변환해준다. 
+    + <U>**@Configuration**</U> : 스프링 설정 정보로 인식하고, 스프링 빈이 싱글톤을 유지하도록 추가 처리를 한다.
 
 + # 스프링 CGLIB
   + <U>**@Configuration**</U>을 붙일 때
