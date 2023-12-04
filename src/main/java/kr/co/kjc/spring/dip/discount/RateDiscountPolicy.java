@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @MainDiscountPolicy // @Qualifier 대신 보기좋게 사용
 public class RateDiscountPolicy implements DiscountPolicy {
 
-    private int discountFixAMount = 1000; // 1000원 할이
+    private int discountFixAMount = 2000; //2000원 할인
 
     @Override
     public int discount(Member member, int price) {
