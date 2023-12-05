@@ -3,11 +3,11 @@ package kr.co.kjc.spring.lifecycle;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
-public class NetworkBeanImpllient implements InitializingBean, DisposableBean {
+public class NetworkBeanImplClient implements InitializingBean, DisposableBean {
 
     private String url;
 
-    public NetworkBeanImpllient() {
+    public NetworkBeanImplClient() {
         System.out.println("생성자 호출, url = " + url);
     }
 

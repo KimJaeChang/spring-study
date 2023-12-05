@@ -20,8 +20,8 @@ public class BeanLifeCycleTest {
 
 //        @Bean(initMethod = "init", destroyMethod = "close")
         @Bean
-        public NetworkBeanImpllient networkClient() {
-            NetworkBeanImpllient networkClient = new NetworkBeanImpllient();
+        public NetworkBeanImplClient networkClient() {
+            NetworkBeanImplClient networkClient = new NetworkBeanImplClient();
             networkClient.setUrl("http://hello--spring-dev");
             return networkClient;
         }
