@@ -22,7 +22,7 @@ public class SingletonBeanTest {
         System.out.println("singletonBean2 = " + singletonBean2);
         Assertions.assertThat(singletonBean1).isSameAs(singletonBean2);
 
-        ac.close();
+        ac.close();  // close시 Singleton 빈은 자동 종료
     }
 
     @Scope("singleton")

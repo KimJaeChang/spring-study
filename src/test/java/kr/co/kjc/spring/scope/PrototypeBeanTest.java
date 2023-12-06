@@ -15,14 +15,16 @@ public class PrototypeBeanTest {
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(PrototypeBean.class);
 
         System.out.println("find prototypeBean1");
-        PrototypeBean singletonBean1 = ac.getBean(PrototypeBean.class);
+        PrototypeBean prototypeBean1 = ac.getBean(PrototypeBean.class);
         System.out.println("find prototypeBean2");
-        PrototypeBean singletonBean2 = ac.getBean(PrototypeBean.class);
-        System.out.println("singletonBean1 = " + singletonBean1);
-        System.out.println("singletonBean2 = " + singletonBean2);
-        Assertions.assertThat(singletonBean1).isNotSameAs(singletonBean2);
+        PrototypeBean prototypeBean2 = ac.getBean(PrototypeBean.class);
+        System.out.println("prototypeBean1 = " + prototypeBean1);
+        System.out.println("prototypeBean2 = " + prototypeBean2);
+        Assertions.assertThat(prototypeBean1).isNotSameAs(prototypeBean2);
 
-        ac.close();
+        ac.close();                 // close시 Prototype은 자동 종료가 안된다.
+        prototypeBean1.destroy();   // 사용자가 직접 종료 메소드 호출 필요
+        prototypeBean2.destroy();   // 사용자가 직접 종료 메소드 호출 필요
     }
 
     @Scope("prototype")
