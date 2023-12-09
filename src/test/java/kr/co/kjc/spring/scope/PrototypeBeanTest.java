@@ -2,6 +2,8 @@ package kr.co.kjc.spring.scope;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import kr.co.kjc.spring.scope.SingletonBeanTest.SingletonBean;
+import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
