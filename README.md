@@ -236,10 +236,17 @@
       프로토 타입으로 생성한 빈도 싱글톤의 역활로 변해버린다  
       즉 새로 생성되는 빈 타입이 아니라, 스프링 실행 될 때 주입된 처음 상태 그대로 유지된다.
     + 해결 방법 : 
-      + ObjectProvider를 사용
-        + ObjectProvider란 :
-          + 사용자가 Bean을 찾는 방식을 <U>**DL(Dependnecy Lookup)</U> 이라고 하는데 편하게 도와주는 인터페이스 이다.
-      + 예) ObjectProvider<PrototypeBean>
+      + 1. ObjectProvider (Spring 지원)
+        + <U>**ObjectProvider**</U>란 :
+          + 사용자가 Bean을 찾는 방식을 <U>**DL(Dependnecy Lookup)**</U> 이라고 하는데 편하게 도와주는 인터페이스 이다.
+        + 예) ObjectProvider<PrototypeBean> 
+          + getObject() 사용
+      + 2. <U>**Provider**</U> (JSR330 지원)
+        + 예) Provider<PrototypeBean>
+          + get() 사용
+        + Spring boot 3.0 이하 : 'javax.inject.javax.inject:1'
+        + Spring boot 3.0 이후 : 'jakarta.inject:jakarta.inject-api:2.0.1'
+      + 3. <U>**@Lookup**</U> (Spring 지원)
 
 
 + # 애노테이션

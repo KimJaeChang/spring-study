@@ -3,6 +3,7 @@ package kr.co.kjc.spring.scope;
 import ch.qos.logback.core.net.server.Client;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.inject.Provider;
 import kr.co.kjc.spring.scope.PrototypeBeanTest.PrototypeBean;
 import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.Assertions;
@@ -38,7 +39,7 @@ public class SingletonWithPrototypeBean1 {
 
         ClientBean clientBean2 = ac.getBean(ClientBean.class);
         int count2 = clientBean2.logic();
-        Assertions.assertThat(count2).isEqualTo(2);
+        Assertions.assertThat(count2).isEqualTo(1);
     }
 
     // 싱글톤과 프로토 타입 빈을 같이 쓰면 문제 발생
@@ -59,10 +60,12 @@ public class SingletonWithPrototypeBean1 {
     @RequiredArgsConstructor
     static class ClientBean {
 
-        private final ObjectProvider<PrototypeBean> prototypeBeanObjectProvider;
+//        private final ObjectProvider<PrototypeBean> prototypeBeanProvider;  // 1안
+        private final Provider<PrototypeBean> prototypeBeanProvider;
 
         public int logic() {
-            PrototypeBean prototypeBean = prototypeBeanObjectProvider.getObject();
+//            PrototypeBean prototypeBean = prototypeBeanProvider.getObject();  // 1안
+            PrototypeBean prototypeBean = prototypeBeanProvider.get();
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }
