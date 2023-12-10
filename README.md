@@ -253,6 +253,16 @@
       + 웹 스코프는 프로토타입과 다르게 스프링이 해당 스코프의 종료시점까지 관리한다. 따라서 종료 메소드가 호출된다.
     + 종류 : 
       + request : HTTP 요청 하나가 들어오고 나갈 때 까지 유지되는 스코프, 각각의 HTTP 요청마다 별도로 빈 인스턴스가 생성되고 관리된다.
+        + request 사용시 클래스명 그대로 DI를 실행하면 request가 들어오지도 안았는데 DI를 요청해서 에러가 난다.
+          + 해결 방법
+            + 1.  <U>**ObjectProvier<클래스 명>**</U>을 사용하자
+              + ObjectProvider를 사용하면 getObject() 실행 전까진 request로된 scope가 실행되지 않는다.
+            + 2.  <U>**proxy 모드**</U>를 사용하자
+              + 예) @Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+              + proxy 모드를 사용하게 되면 의존관계 주입시 실제 scope로 된 빈이 주입되는게 아닌 스프링 CGLIB에서 생성한  
+                가짜 프록시 객체가 생성되게 된다. 마찬가지로 DI시에 에러가 나지 않으며  
+                의존관계 주입할 떄도 프록시 객체로 생성한 CGLIB 객체를 주입 한다.
+              + 실제 비즈니스 로직 메소드를 호출했을 때 scope로 등록된 진짜 Bean을 조회한다.
       + session : HTTP Session과 동일한 생명주기를 가지는 스코프
       + application : 서블릿 컨텍스트와 동일한 생명주기를 가지는 스코프
       + websocket : 웹 소켓과 동일한 생명주기를 가지는 스코프

@@ -1,14 +1,15 @@
-package kr.co.kjc.spring.common;
+package kr.co.kjc.spring.scope_proxy.common;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import java.util.UUID;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope("request")
-public class MyLogger {
+@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class ScopeProxyMyLogger {
 
   private String uuid;
   private String requestURL;
