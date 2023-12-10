@@ -247,6 +247,15 @@
         + Spring boot 3.0 이하 : 'javax.inject.javax.inject:1'
         + Spring boot 3.0 이후 : 'jakarta.inject:jakarta.inject-api:2.0.1'
       + 3. <U>**@Lookup**</U> (Spring 지원)
+  + 웹 스코프
+    + 특징 : 
+      + 웹 스코프는 웹 환경에서만 동작한다.
+      + 웹 스코프는 프로토타입과 다르게 스프링이 해당 스코프의 종료시점까지 관리한다. 따라서 종료 메소드가 호출된다.
+    + 종류 : 
+      + request : HTTP 요청 하나가 들어오고 나갈 때 까지 유지되는 스코프, 각각의 HTTP 요청마다 별도로 빈 인스턴스가 생성되고 관리된다.
+      + session : HTTP Session과 동일한 생명주기를 가지는 스코프
+      + application : 서블릿 컨텍스트와 동일한 생명주기를 가지는 스코프
+      + websocket : 웹 소켓과 동일한 생명주기를 가지는 스코프
 
 
 + # 애노테이션
